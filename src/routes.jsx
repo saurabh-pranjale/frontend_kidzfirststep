@@ -6,16 +6,17 @@ import ProductPage from './pages/ProductPage';
 import DetailProduct from './pages/DetailProduct';
 import AuthLayout from './components/Header/auth-view/layout';
 import { ShopLayout } from './components/Header/shop-view/layout';
+import Protected from './components/Header/auth-view/Protected';
 
 
 const routes = [
 
-  <Route key={'/auth'} path='/' element={<AuthLayout />}>
+  <Route key={'/auth'} path='/' element={<Protected><AuthLayout /></Protected>}>
     <Route key={'/'} path='' element={<Login />} />,
     <Route key={'register'} path='register' element={<Register />} />,
   </Route>,
 
-  <Route key={'homed'} path='/home' element={<ShopLayout />}>
+  <Route key={'homed'} path='/home' element={<Protected><ShopLayout /></Protected>}>
     <Route key={'home'} path='' element={<HomePage />} />,
     <Route key={'products'} path='products' element={<ProductPage />} />,
     <Route key={'product'} path='product/:id' element={<DetailProduct />} />
