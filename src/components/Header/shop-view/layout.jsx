@@ -1,11 +1,13 @@
-import React from 'react'
+
 import { Outlet } from 'react-router-dom'
+import Navabar from '../Navabar'
 
 export const ShopLayout = () => {
   return (
     <div>
-        <h1>Headre</h1>
-        <Outlet />
+    
+      <Navabar />
+      <Outlet />
     </div>
   )
 }

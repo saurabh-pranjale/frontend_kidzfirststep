@@ -1,29 +1,39 @@
-import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { checkAuth } from '../../../store/auth/index'; // adjust path as needed
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Navigate, useLocation } from "react-router-dom";
+import { checkAuth } from "../../../store/auth";
 
-const Protected = ({ children }) => {
-  const navigate = useNavigate();
+function Protected({ children }) {
   const dispatch = useDispatch();
+  const location = useLocation();
+  const { loading, isAuthenticated } = useSelector((state) => state.auth);
 
-  const { user, loading, isAuthenticated } = useSelector((state) => state.auth);
-  
+  console.log("loading:",loading,"authenticate:",isAuthenticated)
 
+  // Run auth check on initial mount only
   useEffect(() => {
     dispatch(checkAuth());
   }, [dispatch]);
 
-  useEffect(() => {
-    // If authenticated and on root, redirect to /home
-    if (isAuthenticated && window.location.pathname === '/') {
-      navigate('/home');
-    }
-  }, [isAuthenticated, navigate]);
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
-  if (loading) return <div>Loading...</div>;
+  const path = location.pathname;
+  const isAuthPage = path === "/" || path === "/register";
 
+  // If not authenticated and trying to access a protected page
+  if (!isAuthenticated && !isAuthPage) {
+    return <Navigate to="/" replace />;
+  }
+
+  // If authenticated and trying to access login/register
+  if (isAuthenticated && isAuthPage) {
+    return <Navigate to="/home" replace />;
+  }
+
+  // Allow rendering
   return <>{children}</>;
-};
+}
 
 export default Protected;

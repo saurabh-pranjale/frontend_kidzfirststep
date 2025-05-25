@@ -1,28 +1,32 @@
+import React from 'react';
+import { Card, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
-import Card from 'react-bootstrap/Card';
-import { useNavigate, useParams } from 'react-router-dom';
-
-function Cards({pImage,pTitle,pDesc,oPrice,dPrice,id}) {
-
-  const navigate = useNavigate();
-
-
-
+const Cards = ({ id, pTitle, pImage, pDesc }) => {
   return (
-    <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src={pImage} onClick={()=> navigate(`/product/${id}`,{state:true})} />
-      <Card.Body>
-        <Card.Title>{pTitle}</Card.Title>
-        <Card.Text>
-          {pDesc}
+    <Card className="h-100 shadow-sm border-0 rounded-4 overflow-hidden product-card">
+      <div className="overflow-hidden">
+        <Card.Img
+          variant="top"
+          src={pImage || 'https://via.placeholder.com/300x200?text=No+Image'}
+          alt={pTitle}
+          className="img-fluid product-image"
+          style={{ height: '200px', objectFit: 'cover' }}
+        />
+      </div>
+      <Card.Body className="d-flex flex-column">
+        <Card.Title className="fs-5 fw-semibold text-truncate">{pTitle}</Card.Title>
+        <Card.Text className="text-muted small" style={{ flexGrow: 1 }}>
+          {pDesc?.slice(0, 70)}...
         </Card.Text>
-        <div>
-       <h2><del>$500</del></h2> 
-          <h2>$400</h2>
-        </div>
+        <Link to={`/home/product/${id}`} className="mt-2 w-100">
+          <Button variant="primary" className="w-100 rounded-pill">
+            View Details
+          </Button>
+        </Link>
       </Card.Body>
     </Card>
   );
-}
+};
 
 export default Cards;

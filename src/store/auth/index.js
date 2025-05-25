@@ -19,7 +19,9 @@ axios.defaults.withCredentials = true;
 
 export const registerUser = createAsyncThunk('auth/register', async (data, thunkAPI) => {
   try {
-    const res = await api.post(`/auth/register`, data);
+    const res = await api.post(`/auth/register`, data,{
+  withCredentials: true // <--- CRUCIAL
+});
     return res.data.user;
   } catch (err) {
     return thunkAPI.rejectWithValue(err.response?.data?.message || 'Registration failed');
@@ -28,16 +30,20 @@ export const registerUser = createAsyncThunk('auth/register', async (data, thunk
 
 export const loginUser = createAsyncThunk('auth/login', async (data, thunkAPI) => {
   try {
-    const res = await api.post(`/auth/login`, data);
+    const res = await api.post(`/auth/login`, data,{
+  withCredentials: true // <--- CRUCIAL
+});
     return res.data.user;
   } catch (err) {
     return thunkAPI.rejectWithValue(err.response?.data?.message || 'Login failed');
   }
 });
 
-export const checkAuth = createAsyncThunk('auth/check', async (_, thunkAPI) => {
+export const checkAuth = createAsyncThunk('auth/check-auth', async (_, thunkAPI) => {
   try {
-    const res = await api.get(`/auth/check-auth`);
+    const res = await api.get(`/auth/check-auth`,{
+  withCredentials: true // <--- CRUCIAL
+});
     console.log(res,"checking")
     return res.data.user;
   } catch (err) {
@@ -47,7 +53,9 @@ export const checkAuth = createAsyncThunk('auth/check', async (_, thunkAPI) => {
 
 export const logoutUser = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
-    await api.post(`/auth/logout`);
+    await api.post(`/auth/logout`,{
+  withCredentials: true // <--- CRUCIAL
+});
     return;
   } catch (err) {
     return thunkAPI.rejectWithValue('Logout failed');
