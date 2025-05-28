@@ -1,13 +1,15 @@
 
 import { Outlet } from 'react-router-dom'
-import Navabar from '../Navabar'
+import ShopHeader from './ShopHeader'
+import KidzFirstFooter from '../KidzFirstFooter'
 
 export const ShopLayout = () => {
   return (
     <div>
     
-      <Navabar />
+      <ShopHeader />
       <Outlet />
+      <KidzFirstFooter />
     </div>
   )
 }

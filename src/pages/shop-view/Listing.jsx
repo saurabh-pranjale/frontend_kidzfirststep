@@ -1,16 +1,14 @@
-import ProductFilter from "../../components/Header/shop-view/filter";
+import ProductFilter from "../../components/shop-view/filter";
 import Dropdown from "react-bootstrap/Dropdown";
 import { sortOptions } from "../../config/index";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import ShoppingProductTile from "../../components/Header/shop-view/product-tile";
-import {
-  fetchAllFilteredProducts,
-  fetchProductDetails,
-} from "../../store/shop/index";
+import ShoppingProductTile from "../../components/shop-view/product-tile";
+import { fetchAllFilteredProducts } from "../../store/shop/index";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import ReactPaginate from "react-paginate";
-import "./pagination.css"; // Add your CSS styles here
+import "./pagination.css";
+import { addToCart, fetchCartItems } from "../../store/cart";
 
 function createSearchParamsHelper(filterparams) {
   const queryParams = [];
@@ -37,14 +35,12 @@ function ShoppingListing() {
   const [openDetailsDialog, setOpenDetailsDialog] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
 
-  const itemsPerPage = 6; // Customize as needed
+  const itemsPerPage = 6;
   const offset = currentPage * itemsPerPage;
-
-  const navigate = useNavigate();
 
   function handleSort(value) {
     setSort(value);
-    setCurrentPage(0); // Reset to first page
+    setCurrentPage(0);
   }
 
   function handleFilter(getSectionId, getCurrentOption) {
@@ -70,11 +66,7 @@ function ShoppingListing() {
     });
 
     setFilters(cpyFilters);
-    setCurrentPage(0); // Reset to first page on filter change
-  }
-
-  function handleGetProductDetails(getCurrentProductId) {
-    dispatch(fetchProductDetails(getCurrentProductId));
+    setCurrentPage(0);
   }
 
   function handleAddToCart(getCurrentProductId, getTotalStock) {
@@ -116,14 +108,24 @@ function ShoppingListing() {
     setCurrentPage(selected);
   }
 
+  // Load filters from URL or sessionStorage on first mount
   useEffect(() => {
     const urlFilters = {};
     for (const [key, value] of searchParams.entries()) {
       urlFilters[key] = value.split(",");
     }
-    setFilters(urlFilters);
-  }, []); // Initial mount
 
+    if (Object.keys(urlFilters).length > 0) {
+      setFilters(urlFilters);
+    } else {
+      const stored = sessionStorage.getItem("filters");
+      if (stored) {
+        setFilters(JSON.parse(stored));
+      }
+    }
+  }, []);
+
+  // Update URL & sessionStorage when filters change
   useEffect(() => {
     if (filters && Object.keys(filters).length > 0) {
       const queryString = createSearchParamsHelper(filters);
@@ -146,6 +148,11 @@ function ShoppingListing() {
   useEffect(() => {
     if (productDetails !== null) setOpenDetailsDialog(true);
   }, [productDetails]);
+
+   // Scroll to top on mount
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const sortedProductList = [...productList].sort((a, b) => {
     switch (sort) {
@@ -206,15 +213,8 @@ function ShoppingListing() {
               <div className="row g-3">
                 {currentItems.length > 0 ? (
                   currentItems.map((productItem) => (
-                    <div
-                      className="col-12 col-sm-6 col-md-4"
-                      onClick={() => {
-                        navigate(`/home/product/${productItem._id}`);
-                      }}
-                      key={productItem._id}
-                    >
+                    <div className="col-12 col-sm-6 col-md-4" key={productItem._id}>
                       <ShoppingProductTile
-                        handleGetProductDetails={handleGetProductDetails}
                         product={productItem}
                         handleAddToCart={handleAddToCart}
                         isOutOfStock={productItem.stock <= 0}

@@ -1,3 +1,23 @@
+
+import { CupSoda, SquarePlay , Heart, Flame , Book , Dice6  } from "lucide-react";
+
+export const categoriesWithIcon = [
+  { id: "soft-toys", label: "Soft Toys", icon: CupSoda },
+  { id: "musical-toys", label: "Musical Toys", icon: SquarePlay  },
+  { id: "best-seller", label: "Best Seller", icon: Heart },
+  { id: "new-arrival", label: "New Arrival", icon: Flame  },
+  { id: "learning-toys", label: "Learning Toys", icon: Book  },
+];
+
+export const brandsWithIcon = [
+  { id: "satishsea", label: "Satishsea", icon: Dice6  },
+  { id: "snehalsea", label: "Snehalsea", icon: Dice6  },
+  { id: "rushsea", label: "Rushsea", icon: Dice6  },
+  { id: "ankitasea", label: "Anikitasea", icon: Dice6  },
+  { id: "purnavsea", label: "Purnavsea", icon: Dice6  },
+];
+
+
 export const registerFormControls = [
   {
     name: "userName",
@@ -100,15 +120,10 @@ export const addProductFormElements = [
   },
 ];
 
-export const shoppingViewHeaderMenuItems = [
-  { id: "home", label: "Home", path: "/shop/home" },
-  { id: "products", label: "Products", path: "/shop/listing" },
-  { id: "wellness", label: "Wellness", path: "/shop/listing" },
-  { id: "tech", label: "Tech", path: "/shop/listing" },
-  { id: "grooming", label: "Grooming", path: "/shop/listing" },
-  { id: "accessories", label: "Accessories", path: "/shop/listing" },
-  { id: "tracking", label: "Tracking", path: "/shop/listing" },
-  { id: "wishlist", label: "Wishlist", path: "/shop/wishlist" },
+export const shoppingViewHeaderMenuItems  = [
+  { id: 2, label: "Products", path: "/home/products" },
+  { id: 3, label: "About", path: "/home/about" },
+  { id: 4, label: "Wishlist", path: "/home/wishlist" },
 ];
 
 export const categoryOptionsMap = {

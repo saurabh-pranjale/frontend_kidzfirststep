@@ -26,10 +26,10 @@ const SimpleSlider = () => {
   };
 
   const images = [
-    "https://www.funcorp.in/cdn/shop/files/Funcorp-Summer-Sale-3.1.jpg?v=1746452706&width=2000",
-    "https://www.funcorp.in/cdn/shop/files/Funcorp-Summer-Sale-3.1.jpg?v=1746452706&width=2000",
-    "https://www.funcorp.in/cdn/shop/files/Funcorp-Summer-Sale-3.1.jpg?v=1746452706&width=2000",
-    "https://www.funcorp.in/cdn/shop/files/Funcorp-Summer-Sale-3.1.jpg?v=1746452706&width=2000",
+    "https://cdn.vectorstock.com/i/500p/08/36/happy-kids-standing-behind-the-bushes-in-paper-cut-vector-41930836.jpg",
+    "https://cdn.vectorstock.com/i/500p/08/36/happy-kids-standing-behind-the-bushes-in-paper-cut-vector-41930836.jpg",
+    "https://cdn.vectorstock.com/i/500p/08/36/happy-kids-standing-behind-the-bushes-in-paper-cut-vector-41930836.jpg",
+    "https://cdn.vectorstock.com/i/500p/08/36/happy-kids-standing-behind-the-bushes-in-paper-cut-vector-41930836.jpg",
   ];
 
   return (

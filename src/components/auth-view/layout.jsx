@@ -1,7 +1,7 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import girl from '../../../assets/girl.jpeg';
+import girl from '../../assets/girl.jpeg';
 
 const AuthLayout = () => {
   return (

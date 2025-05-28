@@ -12,8 +12,8 @@ const initialState = {
   error: null,
 };
 
-// Enable cookie support for cross-origin
-axios.defaults.withCredentials = true;
+
+
 
 // --- Thunks ---
 
@@ -94,6 +94,7 @@ const authSlice = createSlice({
       state.user = action.payload;
       state.isAuthenticated = true;
     });
+    
     builder.addCase(loginUser.rejected, (state, action) => {
       state.loading = false;
       state.error = action.payload;

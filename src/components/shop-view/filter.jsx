@@ -1,4 +1,4 @@
-import { filterOptions } from "../../../config/index";
+import { filterOptions } from "../../config/index";
 import { Fragment } from "react";
 
 function ProductFilter({ filters, handleFilter }) {

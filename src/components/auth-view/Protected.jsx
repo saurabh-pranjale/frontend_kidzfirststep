@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useLocation } from "react-router-dom";
-import { checkAuth } from "../../../store/auth";
+import { checkAuth } from "../../store/auth/index";
 
 function Protected({ children }) {
   const dispatch = useDispatch();
