@@ -121,9 +121,9 @@ export const addProductFormElements = [
 ];
 
 export const shoppingViewHeaderMenuItems  = [
-  { id: 2, label: "Products", path: "/home/products" },
-  { id: 3, label: "About", path: "/home/about" },
-  { id: 4, label: "Wishlist", path: "/home/wishlist" },
+  { id: 2, label: "Products", path: "/shop/products" },
+  { id: 3, label: "About", path: "/shop/about" },
+  { id: 4, label: "Wishlist", path: "/shop/wishlist" },
 ];
 
 export const categoryOptionsMap = {

@@ -11,6 +11,7 @@ import { shoppingViewHeaderMenuItems } from "../../config/index";
 
 import "./ShopHeader.css"; // <-- Added import here
 
+
 // Render navigation links
 function MenuItems({ onClick }) {
   return (
@@ -32,6 +33,8 @@ function MenuItems({ onClick }) {
 
 function HeaderRightContent({ onClose, setShowCart }) {
   const { user } = useSelector((state) => state.auth);
+  const {cartItems} = useSelector((state)=> state.shopCart)
+  console.log(cartItems.length,"helo")
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -49,7 +52,7 @@ function HeaderRightContent({ onClose, setShowCart }) {
         aria-label="Open shopping cart"
       >
         <ShoppingCart className="me-1" />
-        Cart
+        Cart  
       </Button>
 
       {/* User Dropdown */}
@@ -72,7 +75,7 @@ function HeaderRightContent({ onClose, setShowCart }) {
           <Dropdown.Divider />
           <Dropdown.Item
             onClick={() => {
-              navigate("/home/account");
+              navigate("/shop/account");
               onClose?.();
             }}
           >

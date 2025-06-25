@@ -23,6 +23,7 @@ export const createNewOrder = createAsyncThunk(
 export const capturePayment = createAsyncThunk(
   "/order/capturePayment",
   async ({ paymentId, orderId, payerId }) => {
+    console.log(paymentId,orderId,payerId,"id id id")
     const response = await api.post(
       "/shop/order/capture",
       { paymentId, orderId, payerId }

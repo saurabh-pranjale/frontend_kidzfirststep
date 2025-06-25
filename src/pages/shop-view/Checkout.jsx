@@ -70,6 +70,8 @@ function ShoppingCheckout() {
       payerId: "",
     };
 
+    console.log(orderData,"!@!");
+
     dispatch(createNewOrder(orderData)).then((data) => {
       if (data?.payload?.success) {
         setIsPaymentStart(true);

@@ -12,6 +12,8 @@ import ProductListing from './pages/shop-view/Listing'
 import ShoppingCheckout from './pages/shop-view/Checkout';
 import About from './pages/About';
 import Wishlist from './pages/Wishlist';
+import PaypalReturnPage from './pages/shop-view/PaypalReturnPage';
+import ThankYouPage from './pages/shop-view/ThankYouPage';
 
 
 
@@ -22,7 +24,7 @@ const routes = [
     <Route path='register' element={<Register />} />
   </Route>,
 
-  <Route key={'homed'} path='/home' element={<Protected><ShopLayout /></Protected>}>
+  <Route key={'homed'} path='/shop' element={<ShopLayout />}>
     <Route index element={<HomePage />} />
     <Route path='products' element={<ProductListing />} />
     <Route path='product/:id' element={<DetailProduct />} />
@@ -30,6 +32,8 @@ const routes = [
     <Route path="account" element={<ShoppingAccount />} />
     <Route path='wishlist' element={<Wishlist />} />
     <Route path='checkout' element={<ShoppingCheckout />} />
+    <Route path="paypal-return" element={<PaypalReturnPage />} />
+    <Route path="thank-you" element={<ThankYouPage />} />
   </Route>,
 ];
 

@@ -29,9 +29,10 @@ function Protected({ children }) {
 
   // If authenticated and trying to access login/register
   if (isAuthenticated && isAuthPage) {
-    return <Navigate to="/home" replace />;
+    return <Navigate to="/shop" replace />;
   }
-
+  
+  console.log(isAuthenticated,isAuthPage,"hello js")
   // Allow rendering
   return <>{children}</>;
 }

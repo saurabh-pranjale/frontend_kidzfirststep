@@ -64,7 +64,7 @@ function ShoppingProductTile({ product, handleAddToCart }) {
 
             <button
               className="btn btn-info w-100 btn-sm mt-2"
-              onClick={() => navigate(`/home/product/${product?._id}`)}
+              onClick={() => navigate(`/shop/product/${product?._id}`)}
             >
               View Product
             </button>

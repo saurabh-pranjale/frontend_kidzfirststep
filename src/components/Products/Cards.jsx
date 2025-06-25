@@ -19,7 +19,7 @@ const Cards = ({ id, pTitle, pImage, pDesc }) => {
         <Card.Text className="text-muted small" style={{ flexGrow: 1 }}>
           {pDesc?.slice(0, 70)}...
         </Card.Text>
-        <Link to={`/home/product/${id}`} className="mt-2 w-100">
+        <Link to={`/shop/product/${id}`} className="mt-2 w-100">
           <Button variant="primary" className="w-100 rounded-pill">
             View Details
           </Button>

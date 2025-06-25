@@ -45,7 +45,7 @@ function UserCartWrapper({ cartItems, setOpenCartSheet }) {
           <button
             className="btn btn-warning w-100 mt-3 fw-bold"
             onClick={() => {
-              navigate("/home/checkout");
+              navigate("/shop/checkout");
               setOpenCartSheet(false);
             }}
           >
