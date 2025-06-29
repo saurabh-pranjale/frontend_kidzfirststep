@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { capturePayment } from "../../store/order/index";
+import PaymentProcessing from "../../components/shop-view/payments/PaymentProcessing";
+import PaymentError from "../../components/shop-view/payments/PaymentError";
+import PaymentSuccess from "../../components/shop-view/payments/PaymentSuccess";
 
 function PaypalReturnPage() {
   const [searchParams] = useSearchParams();
@@ -39,9 +42,9 @@ function PaypalReturnPage() {
 }, [searchParams, dispatch, navigate]);
 
 
-  if (status === "processing") return <div>Processing your payment...</div>;
-  if (status === "error") return <div>Error: {error}</div>;
-  if (status === "success") return <div>Payment successful! Thank you for your order.</div>;
+  if (status === "processing") return <PaymentProcessing />;
+  if (status === "error") return <PaymentError />;
+  if (status === "success") return <PaymentSuccess />;
 
   return null;
 }

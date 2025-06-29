@@ -1,5 +1,5 @@
 
-import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes } from 'react-router-dom';
 
 import routes from './routes.jsx';
 

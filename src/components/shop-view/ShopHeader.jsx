@@ -34,7 +34,7 @@ function MenuItems({ onClick }) {
 function HeaderRightContent({ onClose, setShowCart }) {
   const { user } = useSelector((state) => state.auth);
   const {cartItems} = useSelector((state)=> state.shopCart)
-  console.log(cartItems.length,"helo")
+ 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
