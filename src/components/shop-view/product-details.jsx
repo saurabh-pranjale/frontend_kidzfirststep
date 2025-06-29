@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, fetchCartItems } from "@/store/shop/cart";
+import { addToCart, fetchCartItems } from "../../store/cart/index";
 import { setProductDetails } from "@/store/shop/product-slice";
 import { addReview, getReviews } from "@/store/shop/review-slice";
 import StarRating from "../common/star-rating";
@@ -134,7 +134,7 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
                     handleAddToCart(productDetails?._id, productDetails?.totalStock)
                   }
                 >
-                  Add to Cart
+                  Add to Cartl
                 </button>
               )}
 
