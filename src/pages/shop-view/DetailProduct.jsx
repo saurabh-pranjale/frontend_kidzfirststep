@@ -4,10 +4,12 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, fetchCartItems } from '../../store/cart';
+import { addToWishlist } from "../../store/shop/wishlist-slice/index";
 import { addReview, getReviews } from '../../store/shop/review-slice';
 import StarRating from '../../components/common/start-rating';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { FaHeart, FaRegHeart } from "react-icons/fa";
 
 const DetailProduct = () => {
   const [quantity, setQuantity] = useState(1);
@@ -16,13 +18,11 @@ const DetailProduct = () => {
   const [showReviewModal, setShowReviewModal] = useState(false);
   const [reviewMsg, setReviewMsg] = useState('');
   const [rating, setRating] = useState(0);
+  const [inWishlist, setInWishlist] = useState(false);
 
   const { id } = useParams();
   const dispatch = useDispatch();
   const { user } = useSelector(state => state.auth);
-
- 
-  const { cartItems } = useSelector(state => state.shopCart);
   const { reviews, error } = useSelector(state => state.shopReview);
 
   const increaseQty = () => setQuantity(prev => prev + 1);
@@ -41,24 +41,48 @@ const DetailProduct = () => {
   };
 
   const handleAddToCart = () => {
+    if (!user?.id) {
+      toast.error("Please login first");
+      return;
+    }
+
     dispatch(addToCart({
-      userId: user?.id,
+      userId: user.id,
       productId: id,
       quantity,
     })).then(res => {
       if (res?.payload?.success) {
-        dispatch(fetchCartItems(user?.id));
+        dispatch(fetchCartItems(user.id));
         toast.success("✅ Added to Cart");
       }
     });
   };
 
-  
-console.group(user.id,"arijit")
+  const handleWishList = () => {
+    if (!user?.id) {
+      toast.error("Please login first");
+      return;
+    }
+
+    if (inWishlist) return;
+
+    dispatch(addToWishlist({
+      userId: user.id,
+      productId: id,
+    })).then((res) => {
+      const payload = res?.payload;
+      if (payload?.success) {
+        setInWishlist(true);
+        toast.success("❤️ Added to Wishlist");
+      } else if (typeof payload === "string" && payload.includes("Already")) {
+        toast.warning("Already in Wishlist");
+      }
+    });
+  };
+
   const handleSubmitReview = () => {
     dispatch(addReview({
       productId: id,
-    
       userId: user?.id,
       userName: user?.userName,
       reviewMessage: reviewMsg,
@@ -72,7 +96,7 @@ console.group(user.id,"arijit")
           dispatch(getReviews(id));
           toast.success("✅ Review submitted!");
         } else {
-          toast.error(error);
+          toast.error(error || "Review failed");
           setShowReviewModal(false);
         }
       })
@@ -85,6 +109,22 @@ console.group(user.id,"arijit")
   useEffect(() => {
     getData();
   }, [id]);
+
+  useEffect(() => {
+    const checkIfInWishlist = async () => {
+      try {
+        const res = await axios.get(`http://localhost:5000/api/shop/wishlist/${user?.id}`);
+        const found = res.data.data?.some((item) => item.productId === id);
+        setInWishlist(found);
+      } catch (err) {
+        console.error("Could not check wishlist", err);
+      }
+    };
+
+    if (user?.id) {
+      checkIfInWishlist();
+    }
+  }, [user, id]);
 
   const averageReview =
     reviews?.length > 0
@@ -112,12 +152,29 @@ console.group(user.id,"arijit")
   return (
     <div className="container my-4">
       <div className="row g-4 align-items-start">
-        <div className="col-md-5 text-center">
+        <div className="col-md-5 text-center position-relative">
           <img
             src={data.image?.[0] || '/placeholder.png'}
             alt={data.title || 'Product Image'}
             className="img-fluid border"
           />
+          <button
+            className="wishlist-icon"
+            onClick={handleWishList}
+            style={{
+              position: "absolute",
+              top: "1rem",
+              right: "1rem",
+              background: "transparent",
+              border: "none",
+              fontSize: "28px",
+              color: inWishlist ? "red" : "#ccc",
+              cursor: inWishlist ? "not-allowed" : "pointer",
+            }}
+            title={inWishlist ? "Already in Wishlist" : "Add to Wishlist"}
+          >
+            {inWishlist ? <FaHeart /> : <FaRegHeart />}
+          </button>
         </div>
 
         <div className="col-md-7">
