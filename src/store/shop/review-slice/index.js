@@ -12,10 +12,12 @@ export const addReview = createAsyncThunk(
   "/order/addReview",
   async (formData, { rejectWithValue }) => {
     try {
+      console.log(formData)
       const response = await axios.post(
         "http://localhost:5000/api/shop/review/add",
         formData
       );
+
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || "Failed to add review");

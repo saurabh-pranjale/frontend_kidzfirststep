@@ -20,6 +20,8 @@ const DetailProduct = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const { user } = useSelector(state => state.auth);
+
+ 
   const { cartItems } = useSelector(state => state.shopCart);
   const { reviews, error } = useSelector(state => state.shopReview);
 
@@ -51,9 +53,12 @@ const DetailProduct = () => {
     });
   };
 
+  
+console.group(user.id,"arijit")
   const handleSubmitReview = () => {
     dispatch(addReview({
       productId: id,
+    
       userId: user?.id,
       userName: user?.userName,
       reviewMessage: reviewMsg,
@@ -162,7 +167,7 @@ const DetailProduct = () => {
 
           <hr />
           <h5>Customer Reviews</h5>
-          {error && <p className="text-danger">Error: {error}</p>}
+          {error && <p className="text-danger fw-bold">{error}</p>}
           {reviews?.length > 0 ? (
             reviews.map((review) => (
               <div key={review._id} className="mb-3 border-bottom pb-2">
