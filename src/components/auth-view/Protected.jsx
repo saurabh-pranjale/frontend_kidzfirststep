@@ -8,21 +8,23 @@ function Protected({ children }) {
   const location = useLocation();
   const { loading, isAuthenticated } = useSelector((state) => state.auth);
 
-  console.log("loading:",loading,"authenticate:",isAuthenticated)
-
-  // Run auth check on initial mount only
+  // Run auth check on mount
   useEffect(() => {
     dispatch(checkAuth());
   }, [dispatch]);
 
- if (loading) {
+  // Show spinner while checking auth
+  if (loading) {
     return (
       <div className="d-flex justify-content-center align-items-center vh-100">
         <div className="text-center">
-          <div className="spinner-border text-primary" role="status" style={{ width: '3rem', height: '3rem' }}>
+          <div
+            className="spinner-border text-primary"
+            role="status"
+            style={{ width: "3rem", height: "3rem" }}
+          >
             <span className="visually-hidden">Loading...</span>
           </div>
-      
         </div>
       </div>
     );
@@ -31,18 +33,19 @@ function Protected({ children }) {
   const path = location.pathname;
   const isAuthPage = path === "/" || path === "/register";
 
-  // If not authenticated and trying to access a protected page
+  
+
+  // Not authenticated and trying to access protected route
   if (!isAuthenticated && !isAuthPage) {
     return <Navigate to="/" replace />;
   }
 
-  // If authenticated and trying to access login/register
+  // Already authenticated and trying to access login/register
   if (isAuthenticated && isAuthPage) {
     return <Navigate to="/shop" replace />;
   }
-  
-  console.log(isAuthenticated,isAuthPage,"hello js")
-  // Allow rendering
+
+  // Otherwise, allow access
   return <>{children}</>;
 }
 
