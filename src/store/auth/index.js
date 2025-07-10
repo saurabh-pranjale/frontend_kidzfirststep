@@ -53,7 +53,7 @@ export const checkAuth = createAsyncThunk('auth/check-auth', async (_, thunkAPI)
 
 export const logoutUser = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
-    await api.post(`/auth/logout`,{
+    await api.post(`/auth/logout`,null,{
   withCredentials: true // <--- CRUCIAL
 });
     return;

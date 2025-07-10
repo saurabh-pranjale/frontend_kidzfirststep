@@ -9,9 +9,12 @@ const BASE_URL = "http://localhost:5000/api/shop/wishlist";
 export const addToWishlist = createAsyncThunk(
   "wishlist/addToWishlist",
   async ({ userId, productId }, thunkAPI) => {
+  
     try {
       const res = await axios.post(`${BASE_URL}/add`, { userId, productId });
-      return res.data.data;
+    
+      return res.data;
+
     } catch (err) {
       return thunkAPI.rejectWithValue(err.response?.data?.message || "Failed to add to wishlist");
     }

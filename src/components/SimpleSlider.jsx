@@ -37,7 +37,7 @@ const SimpleSlider = () => {
       <Slider {...settings}>
         {images.map((img, index) => (
           <div key={index}>
-            <img className="slider-image" src={img} alt={`Slide ${index + 1}`} />
+            <img className="slider-image" src={img} alt={`Slide ${index + 1}`} loading="lazy"/>
           </div>
         ))}
       </Slider>

@@ -70,9 +70,11 @@ const DetailProduct = () => {
       userId: user.id,
       productId: id,
     })).then((res) => {
-      const payload = res?.payload;
+      const payload = res.payload;
+      console.log("Wishlist response payload:", payload); // ✅ Debug
       if (payload?.success) {
         setInWishlist(true);
+        
         toast.success("❤️ Added to Wishlist");
       } else if (typeof payload === "string" && payload.includes("Already")) {
         toast.warning("Already in Wishlist");
