@@ -91,6 +91,7 @@ const DetailProduct = () => {
       reviewValue: rating,
     }))
       .then((res) => {
+        console.log(res,"hello")
         if (res?.payload?.success) {
           setReviewMsg('');
           setRating(0);
