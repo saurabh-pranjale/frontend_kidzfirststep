@@ -8,6 +8,7 @@ import { fetchCartItems } from "../../store/cart/index";
 import UserCartWrapper from "./UserCartWrapper";
 import { Dropdown, Button, Offcanvas } from "react-bootstrap";
 import { shoppingViewHeaderMenuItems } from "../../config/index";
+import kfs_logo from '../../assets/kfs_logo.jpg'
 
 import "./ShopHeader.css"; // <-- Added import here
 
