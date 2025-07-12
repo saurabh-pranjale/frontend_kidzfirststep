@@ -13,15 +13,16 @@
   transform: scale(1.03);
 }
 
-.shop-header .nav-link.text-warning {
+.shop-header .nav-link.nav-link {
   font-size: 1rem;
   font-family: inherit;
-  color: #003366 !important;
+  font-weight: 600;
+  color: #03011f;
   transition: color 0.3s ease, transform 0.3s ease;
 }
 
-.shop-header .nav-link.text-warning:hover {
-  color: #00509e !important;
+.shop-header .nav-link.nav-link:hover {
+  color: #d9401a;
   transform: scale(1.05);
 }
 
@@ -68,6 +69,7 @@
 .shop-header svg:hover {
   transform: scale(1.1);
 }
+
 
 /* ============================ */
 /* HEADER ENTRANCE ANIMATION   */

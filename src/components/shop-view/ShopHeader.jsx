@@ -20,7 +20,7 @@ function MenuItems({ onClick }) {
         <li className="nav-item" key={id}>
           <Link
             to={path}
-            className="nav-link text-warning fw-medium"
+            className="nav-link"
             onClick={onClick}
           >
             {label}

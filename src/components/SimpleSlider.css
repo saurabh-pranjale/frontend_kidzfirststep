@@ -12,12 +12,9 @@
   height: 60vh;
   object-fit: cover;
   border-radius: 12px;
-  transition: transform 0.3s ease-in-out;
 }
 
-.slider-image:hover {
-  transform: scale(1.02);
-}
+
 
 @media (max-width: 768px) {
   .slider-image {
