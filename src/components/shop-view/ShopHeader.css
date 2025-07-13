@@ -7,6 +7,10 @@
   color: #003366 !important;
   transition: color 0.3s ease, transform 0.3s ease;
 }
+.shop-header .navbar #main_logo{
+  height: 2.8rem;
+  object-fit: cover;
+}
 
 .shop-header .navbar-brand:hover {
   color: #00509e !important;
@@ -24,7 +28,7 @@
 
 .shop-header .nav-link.nav-link::after {
   content: "";
-  background-color: blue;
+  background-color: #71a432;
   display: inline-block;
   height: 0.2rem;
   width: 0;
@@ -34,6 +38,7 @@
   transition: width 0.3s ease, background-color 0.3s ease;
 
 }
+
 
 .shop-header .nav-link.nav-link:hover::after {
   color: #d9401a;

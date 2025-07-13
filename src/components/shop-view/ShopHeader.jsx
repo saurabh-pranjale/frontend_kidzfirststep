@@ -8,9 +8,11 @@ import { fetchCartItems } from "../../store/cart/index";
 import UserCartWrapper from "./UserCartWrapper";
 import { Dropdown, Button, Offcanvas } from "react-bootstrap";
 import { shoppingViewHeaderMenuItems } from "../../config/index";
-import kfs_logo from '../../assets/kfs_logo.jpg'
+import logo from '../../assets/logo_KFS.png'
 
 import "./ShopHeader.css"; // <-- Added import here
+
+
 
 
 // Render navigation links
@@ -34,7 +36,10 @@ function MenuItems({ onClick }) {
 
 function HeaderRightContent({ onClose, setShowCart }) {
   const { user } = useSelector((state) => state.auth);
-  const {cartItems} = useSelector((state)=> state.shopCart)
+
+  const cartItems = useSelector((state) => state.shopCart);
+
+console.log(cartItems.cartItems)
  
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -53,7 +58,7 @@ function HeaderRightContent({ onClose, setShowCart }) {
         aria-label="Open shopping cart"
       >
         <ShoppingCart className="me-1" />
-        Cart  
+       
       </Button>
 
       {/* User Dropdown */}
@@ -118,8 +123,9 @@ function ShopHeader() {
             className="navbar-brand text-warning fw-bold d-flex align-items-center"
             aria-label="KidzFirstSTEP Home"
           >
-            <House className="me-2" />
-            KidzFirstSTEP
+          
+          <img src={logo} alt="logo" id="main_logo" />
+
           </Link>
 
           {/* Mobile menu toggle */}
