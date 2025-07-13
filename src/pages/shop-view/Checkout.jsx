@@ -1,5 +1,5 @@
 import Address from "../../components/shop-view/Address";
-import kids from '../../assets/kids.jpg'
+import kids from '../../assets/checkout.png'
 import { useDispatch, useSelector } from "react-redux";
 import UserCartItemsContent from "../../components/shop-view/UserCartItemsContent";
 import { Button } from "react-bootstrap";
@@ -87,8 +87,8 @@ function ShoppingCheckout() {
 
   return (
     <div className="d-flex flex-column">
-      <div className="position-relative overflow-hidden" style={{ height: "400px", width: "100%" }}>
-        <img src={kids} alt="A cute dog" className="w-100 h-100 object-fit-cover" />
+      <div className="position-relative overflow-hidden border border-2 border-dark" style={{ height: "400px", width: "100%" }}>
+        <img src={kids} alt="kids" className="w-100 h-100" />
       </div>
       <div className="row mt-4 p-3 g-4">
         <div className="col-12 col-sm-6">

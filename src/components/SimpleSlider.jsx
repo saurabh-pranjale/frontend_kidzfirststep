@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Banner1 from '../assets/banner.png'
+import Banner2 from '../assets/banner2.png'
 import "./SimpleSlider.css"; // custom styles
 
 const SimpleSlider = () => {
@@ -28,7 +29,7 @@ const SimpleSlider = () => {
 
   const images = [
     Banner1,
-    Banner1,
+    Banner2,
     Banner1,
   ];
 

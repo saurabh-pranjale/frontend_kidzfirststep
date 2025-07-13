@@ -34,14 +34,8 @@ function MenuItems({ onClick }) {
   );
 }
 
-function HeaderRightContent({ onClose, setShowCart }) {
+function HeaderRightContent({ onClose, setShowCart, isMobile = false }) {
   const { user } = useSelector((state) => state.auth);
-
- 
- 
-
-// console.log(cartItems,"carat")
- 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -51,31 +45,42 @@ function HeaderRightContent({ onClose, setShowCart }) {
   };
 
   return (
-    <div className="d-flex align-items-center gap-3 flex-column flex-lg-row">
-      {/* Cart button */}
-      <div
-        className="cursor-pointer"
-        onClick={() => setShowCart(true)}
-        aria-label="Open shopping cart"
-      >
-        <ShoppingBag size={26}  />
-       
-      </div>
+    <div
+      className={`d-flex ${isMobile
+          ? "flex-column align-items-start gap-3 mt-4"
+          : "align-items-center gap-3 flex-column flex-lg-row"
+        }`}
+    >
+      {/* Cart button (desktop only) */}
+      {!isMobile && (
+        <div
+          className="cursor-pointer"
+          onClick={() => setShowCart(true)}
+          aria-label="Open shopping cart"
+        >
+          <ShoppingBag size={28} />
+        </div>
+      )}
 
       {/* User Dropdown */}
-      <Dropdown align="end" className="outline-dark">
+      <Dropdown align="end" className="outline-dark w-100">
         <Dropdown.Toggle
           variant="dark-outline"
           id="user-dropdown"
-          className="d-flex dark-outline align-items-center text-white fw-bold gap-2"
+          className="d-flex dark-outline align-items-center text-dark fw-bold gap-2"
           aria-label="User menu"
         >
-          <FaUserCircle size={24} /> {/* Profile icon */}
-         
-          {user?.name?.[0]?.toUpperCase() || ""}
+          <div id="profile_avatar" style={{ width: 30, height: 30 }}>
+            <img
+              src={"https://avatar.iran.liara.run/public/"}
+              alt="avatar"
+              className="h-100 w-100 rounded-circle object-fit-cover"
+            />
+          </div>
+          
         </Dropdown.Toggle>
 
-        <Dropdown.Menu>
+        <Dropdown.Menu className={isMobile ? "w-100" : ""}>
           <Dropdown.Header>
             Logged in as {user?.userName || "User"}
           </Dropdown.Header>
@@ -99,6 +104,7 @@ function HeaderRightContent({ onClose, setShowCart }) {
     </div>
   );
 }
+
 
 function ShopHeader() {
   const { isAuthenticated, user } = useSelector((state) => state.auth);
@@ -124,8 +130,8 @@ function ShopHeader() {
             className="navbar-brand text-warning fw-bold d-flex align-items-center"
             aria-label="KidzFirstSTEP Home"
           >
-          
-          <img src={logo} alt="logo" id="main_logo" />
+
+            <img src={logo} alt="logo" id="main_logo" />
 
           </Link>
 
@@ -154,17 +160,19 @@ function ShopHeader() {
         placement="start"
       >
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title>Menu</Offcanvas.Title>
+          <Offcanvas.Title><img src={logo} alt="logo" id="main_logo_mbile" />     </Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
           <MenuItems onClick={() => setShowOffcanvas(false)} />
           {isAuthenticated && (
             <HeaderRightContent
+              isMobile={true}
               onClose={() => setShowOffcanvas(false)}
               setShowCart={setShowCart}
             />
           )}
         </Offcanvas.Body>
+
       </Offcanvas>
 
       {/* Custom Cart Offcanvas */}

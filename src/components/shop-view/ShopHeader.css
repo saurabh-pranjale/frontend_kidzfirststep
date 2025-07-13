@@ -7,6 +7,11 @@
   object-fit: cover;
 }
 
+.offcanvas-header #main_logo_mbile {
+  height: 2rem;
+  object-fit: contain;
+  margin-left: 0.5rem; /* optional */
+}
 
 
 .shop-header .nav-link.nav-link {
@@ -44,6 +49,12 @@
   font-size: 1rem;
   font-family: inherit;
   color: #003366 !important;
+}
+.shop-header #user-dropdown #profile_avatar{
+  height: 2.4rem;
+  width: 2.4rem;
+  border: 2px solid black;
+  border-radius: 50%;
 }
 
 .shop-header #user-dropdown:hover,
@@ -125,6 +136,18 @@
   background-color: white;
   box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
   animation: slideInRight 0.4s ease forwards;
+}
+.offcanvas .nav-link {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #000f1d;
+  padding: 0.75rem 1rem;
+  transition: background 0.3s ease;
+}
+
+.offcanvas .nav-link:hover {
+  background-color: #7ded05;
+  border-radius: 8px;
 }
 
 @keyframes slideInRight {
