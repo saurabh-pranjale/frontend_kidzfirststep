@@ -2,7 +2,7 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
+import Banner1 from '../assets/banner.png'
 import "./SimpleSlider.css"; // custom styles
 
 const SimpleSlider = () => {
@@ -27,9 +27,9 @@ const SimpleSlider = () => {
   };
 
   const images = [
-    "https://cdn.vectorstock.com/i/500p/08/36/happy-kids-standing-behind-the-bushes-in-paper-cut-vector-41930836.jpg",
-    "https://cdn.vectorstock.com/i/500p/08/36/happy-kids-standing-behind-the-bushes-in-paper-cut-vector-41930836.jpg",
-    "https://cdn.vectorstock.com/i/500p/08/36/happy-kids-standing-behind-the-bushes-in-paper-cut-vector-41930836.jpg",
+    Banner1,
+    Banner1,
+    Banner1,
   ];
 
   return (

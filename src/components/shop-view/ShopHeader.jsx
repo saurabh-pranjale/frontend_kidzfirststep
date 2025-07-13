@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { House, LogOut, Menu, ShoppingCart, User } from "lucide-react";
+import { House, LogOut, Menu, ShoppingBag, User } from "lucide-react";
 import { FaUserCircle } from "react-icons/fa"; // Add this import
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
@@ -37,9 +37,10 @@ function MenuItems({ onClick }) {
 function HeaderRightContent({ onClose, setShowCart }) {
   const { user } = useSelector((state) => state.auth);
 
-  const cartItems = useSelector((state) => state.shopCart);
+ 
+ 
 
-console.log(cartItems.cartItems)
+// console.log(cartItems,"carat")
  
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -52,14 +53,14 @@ console.log(cartItems.cartItems)
   return (
     <div className="d-flex align-items-center gap-3 flex-column flex-lg-row">
       {/* Cart button */}
-      <Button
-        variant="outline-secondary"
+      <div
+        className="cursor-pointer"
         onClick={() => setShowCart(true)}
         aria-label="Open shopping cart"
       >
-        <ShoppingCart className="me-1" />
+        <ShoppingBag size={26}  />
        
-      </Button>
+      </div>
 
       {/* User Dropdown */}
       <Dropdown align="end" className="outline-dark">

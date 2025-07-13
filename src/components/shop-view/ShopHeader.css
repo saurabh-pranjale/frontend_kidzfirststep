@@ -1,21 +1,13 @@
 /* ============================ */
 /* HEADER BRAND & NAV LINKS    */
 /* ============================ */
-.shop-header .navbar-brand {
-  font-family: 'Segoe UI', system-ui, sans-serif;
-  font-size: 1.3rem;
-  color: #003366 !important;
-  transition: color 0.3s ease, transform 0.3s ease;
-}
+
 .shop-header .navbar #main_logo{
   height: 2.8rem;
   object-fit: cover;
 }
 
-.shop-header .navbar-brand:hover {
-  color: #00509e !important;
-  transform: scale(1.03);
-}
+
 
 .shop-header .nav-link.nav-link {
   font-size: 1rem;
@@ -52,47 +44,16 @@
   font-size: 1rem;
   font-family: inherit;
   color: #003366 !important;
-  transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .shop-header #user-dropdown:hover,
 .shop-header #user-dropdown:focus {
   color: #00509e !important;
-  transform: scale(1.05);
-}
-
-.shop-header .btn-outline-secondary {
-  font-size: 1rem;
-  font-family: inherit;
-  color: #003366 !important;
-  border-color: #003366 !important;
-  transition: all 0.3s ease;
-}
-
-.shop-header .btn-outline-secondary:hover {
-  background-color: #003366 !important;
-  color: white !important;
-  transform: scale(1.03);
-  border-color: #003366 !important;
-}
-
-/* ============================ */
-/* ICONS ONLY WITHIN HEADER    */
-/* ============================ */
-.shop-header svg {
-  width: 1.4rem;
-  height: 1.4rem;
-  transition: transform 0.3s ease;
-}
-
-.shop-header svg:hover {
-  transform: scale(1.1);
 }
 
 
-/* ============================ */
-/* HEADER ENTRANCE ANIMATION   */
-/* ============================ */
+
+
 @keyframes fadeInDown {
   0% {
     opacity: 0;
